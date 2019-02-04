@@ -141,7 +141,7 @@ scaledInt s =
 
 tileSize : Int
 tileSize =
-     scaledInt 8
+     scaledInt 7
 
 
 view : Model -> Document Msg
