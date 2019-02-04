@@ -6403,52 +6403,6 @@ var author$project$Main$update = F2(
 					elm$core$Platform$Cmd$none);
 		}
 	});
-var elm$core$String$fromFloat = _String_fromNumber;
-var elm$json$Json$Decode$map = _Json_map1;
-var elm$json$Json$Decode$map2 = _Json_map2;
-var elm$json$Json$Decode$succeed = _Json_succeed;
-var elm$virtual_dom$VirtualDom$toHandlerInt = function (handler) {
-	switch (handler.$) {
-		case 0:
-			return 0;
-		case 1:
-			return 1;
-		case 2:
-			return 2;
-		default:
-			return 3;
-	}
-};
-var elm$svg$Svg$trustedNode = _VirtualDom_nodeNS('http://www.w3.org/2000/svg');
-var elm$svg$Svg$g = elm$svg$Svg$trustedNode('g');
-var elm$svg$Svg$Attributes$transform = _VirtualDom_attribute('transform');
-var BrianHicks$elm_particle$Particle$view = F2(
-	function (viewData, particle) {
-		var position = particle.aW;
-		return A2(
-			elm$svg$Svg$g,
-			_List_fromArray(
-				[
-					elm$svg$Svg$Attributes$transform(
-					'translate(' + (elm$core$String$fromFloat(position.e5) + (',' + (elm$core$String$fromFloat(position.e6) + ')'))))
-				]),
-			_List_fromArray(
-				[
-					viewData(particle)
-				]));
-	});
-var elm$svg$Svg$svg = elm$svg$Svg$trustedNode('svg');
-var BrianHicks$elm_particle$Particle$System$view = F3(
-	function (viewParticle, attrs, _n0) {
-		var particles = _n0.ag;
-		return A2(
-			elm$svg$Svg$svg,
-			attrs,
-			A2(
-				elm$core$List$map,
-				BrianHicks$elm_particle$Particle$view(viewParticle),
-				particles));
-	});
 var elm$core$Basics$pow = _Basics_pow;
 var mdgriffith$elm_ui$Element$modular = F3(
 	function (normal, ratio, rescale) {
@@ -6457,105 +6411,6 @@ var mdgriffith$elm_ui$Element$modular = F3(
 var author$project$Main$scaledInt = function (s) {
 	return elm$core$Basics$floor(
 		A3(mdgriffith$elm_ui$Element$modular, 16, 1.25, s));
-};
-var BrianHicks$elm_particle$Particle$data = function (_n0) {
-	var particle = _n0;
-	return particle.aQ;
-};
-var BrianHicks$elm_particle$Particle$direction = function (_n0) {
-	var velocity = _n0.G;
-	return velocity.ar;
-};
-var BrianHicks$elm_particle$Particle$directionDegrees = function (particle) {
-	return (BrianHicks$elm_particle$Particle$direction(particle) * 180) / elm$core$Basics$pi;
-};
-var elm$core$Basics$clamp = F3(
-	function (low, high, number) {
-		return (_Utils_cmp(number, low) < 0) ? low : ((_Utils_cmp(number, high) > 0) ? high : number);
-	});
-var BrianHicks$elm_particle$Particle$lifetimePercent = function (_n0) {
-	var lifetime = _n0.aS;
-	var originalLifetime = _n0.aV;
-	return A3(elm$core$Basics$clamp, 0, 1, lifetime / originalLifetime);
-};
-var author$project$Main$fill = function (color) {
-	switch (color) {
-		case 0:
-			return '#D72D35';
-		case 1:
-			return '#F2298A';
-		case 2:
-			return '#F2C618';
-		case 3:
-			return '#2ACC42';
-		default:
-			return '#37CBE8';
-	}
-};
-var elm$svg$Svg$rect = elm$svg$Svg$trustedNode('rect');
-var elm$svg$Svg$Attributes$fill = _VirtualDom_attribute('fill');
-var elm$svg$Svg$Attributes$height = _VirtualDom_attribute('height');
-var elm$svg$Svg$Attributes$opacity = _VirtualDom_attribute('opacity');
-var elm$svg$Svg$Attributes$rx = _VirtualDom_attribute('rx');
-var elm$svg$Svg$Attributes$ry = _VirtualDom_attribute('ry');
-var elm$svg$Svg$Attributes$stroke = _VirtualDom_attribute('stroke');
-var elm$svg$Svg$Attributes$strokeWidth = _VirtualDom_attribute('stroke-width');
-var elm$svg$Svg$Attributes$width = _VirtualDom_attribute('width');
-var elm$svg$Svg$Attributes$x = _VirtualDom_attribute('x');
-var elm$svg$Svg$Attributes$y = _VirtualDom_attribute('y');
-var author$project$Main$viewConfetti = function (particle) {
-	var lifetime = BrianHicks$elm_particle$Particle$lifetimePercent(particle);
-	var opacity = (lifetime < 0.1) ? (lifetime * 10) : 1;
-	var _n0 = BrianHicks$elm_particle$Particle$data(particle);
-	if (!_n0.$) {
-		var color = _n0.a.bb;
-		var rotationOffset = _n0.a.cV;
-		var rotations = _n0.a.cW;
-		return A2(
-			elm$svg$Svg$rect,
-			_List_fromArray(
-				[
-					elm$svg$Svg$Attributes$width('10px'),
-					elm$svg$Svg$Attributes$height('10px'),
-					elm$svg$Svg$Attributes$x('-5px'),
-					elm$svg$Svg$Attributes$y('-5px'),
-					elm$svg$Svg$Attributes$rx('2px'),
-					elm$svg$Svg$Attributes$ry('2px'),
-					elm$svg$Svg$Attributes$fill(
-					author$project$Main$fill(color)),
-					elm$svg$Svg$Attributes$stroke('black'),
-					elm$svg$Svg$Attributes$strokeWidth('4px'),
-					elm$svg$Svg$Attributes$opacity(
-					elm$core$String$fromFloat(opacity)),
-					elm$svg$Svg$Attributes$transform(
-					'rotate(' + (elm$core$String$fromFloat(((rotations * lifetime) + rotationOffset) * 360) + ')'))
-				]),
-			_List_Nil);
-	} else {
-		var color = _n0.a.bb;
-		var length = _n0.a.bM;
-		return A2(
-			elm$svg$Svg$rect,
-			_List_fromArray(
-				[
-					elm$svg$Svg$Attributes$height('10px'),
-					elm$svg$Svg$Attributes$width(
-					elm$core$String$fromInt(length) + 'px'),
-					elm$svg$Svg$Attributes$y('-5px'),
-					elm$svg$Svg$Attributes$rx('2px'),
-					elm$svg$Svg$Attributes$ry('2px'),
-					elm$svg$Svg$Attributes$fill(
-					author$project$Main$fill(color)),
-					elm$svg$Svg$Attributes$stroke('black'),
-					elm$svg$Svg$Attributes$strokeWidth('4px'),
-					elm$svg$Svg$Attributes$opacity(
-					elm$core$String$fromFloat(opacity)),
-					elm$svg$Svg$Attributes$transform(
-					'rotate(' + (elm$core$String$fromFloat(
-						BrianHicks$elm_particle$Particle$directionDegrees(particle)) + ')'))
-				]),
-			_List_Nil);
-	}
 };
 var author$project$Main$tileSize = author$project$Main$scaledInt(7);
 var mdgriffith$elm_ui$Internal$Model$AlignX = function (a) {
@@ -6697,6 +6552,21 @@ var mdgriffith$elm_ui$Internal$Model$addKeyedChildren = F3(
 	});
 var mdgriffith$elm_ui$Internal$Model$AsParagraph = 4;
 var mdgriffith$elm_ui$Internal$Model$asParagraph = 4;
+var elm$json$Json$Decode$map = _Json_map1;
+var elm$json$Json$Decode$map2 = _Json_map2;
+var elm$json$Json$Decode$succeed = _Json_succeed;
+var elm$virtual_dom$VirtualDom$toHandlerInt = function (handler) {
+	switch (handler.$) {
+		case 0:
+			return 0;
+		case 1:
+			return 1;
+		case 2:
+			return 2;
+		default:
+			return 3;
+	}
+};
 var elm$html$Html$div = _VirtualDom_node('div');
 var elm$html$Html$p = _VirtualDom_node('p');
 var elm$html$Html$s = _VirtualDom_node('s');
@@ -7106,6 +6976,7 @@ var mdgriffith$elm_ui$Internal$Model$Style = F2(
 	function (a, b) {
 		return {$: 0, a: a, b: b};
 	});
+var elm$core$String$fromFloat = _String_fromNumber;
 var mdgriffith$elm_ui$Internal$Model$formatColor = function (_n0) {
 	var red = _n0.a;
 	var green = _n0.b;
@@ -12425,20 +12296,6 @@ var author$project$Main$viewPico = F2(
 						}),
 					_List_Nil)));
 	});
-var elm$core$Basics$always = F2(
-	function (a, _n0) {
-		return a;
-	});
-var mdgriffith$elm_ui$Internal$Model$unstyled = A2(elm$core$Basics$composeL, mdgriffith$elm_ui$Internal$Model$Unstyled, elm$core$Basics$always);
-var mdgriffith$elm_ui$Element$html = mdgriffith$elm_ui$Internal$Model$unstyled;
-var mdgriffith$elm_ui$Internal$Model$InFront = 4;
-var mdgriffith$elm_ui$Internal$Model$Nearby = F2(
-	function (a, b) {
-		return {$: 9, a: a, b: b};
-	});
-var mdgriffith$elm_ui$Element$inFront = function (element) {
-	return A2(mdgriffith$elm_ui$Internal$Model$Nearby, 4, element);
-};
 var mdgriffith$elm_ui$Internal$Model$OnlyDynamic = F2(
 	function (a, b) {
 		return {$: 2, a: a, b: b};
@@ -12721,6 +12578,10 @@ var mdgriffith$elm_ui$Element$Font$size = function (i) {
 		mdgriffith$elm_ui$Internal$Model$FontSize(i));
 };
 var elm$virtual_dom$VirtualDom$lazy3 = _VirtualDom_lazy3;
+var elm$core$Basics$always = F2(
+	function (a, _n0) {
+		return a;
+	});
 var mdgriffith$elm_ui$Element$Lazy$embed = function (x) {
 	switch (x.$) {
 		case 0:
@@ -12764,23 +12625,7 @@ var author$project$Main$view = function (_n0) {
 			[
 				A2(
 				mdgriffith$elm_ui$Element$layout,
-				_List_fromArray(
-					[
-						mdgriffith$elm_ui$Element$inFront(
-						mdgriffith$elm_ui$Element$html(
-							A3(
-								BrianHicks$elm_particle$Particle$System$view,
-								author$project$Main$viewConfetti,
-								_List_fromArray(
-									[
-										A2(elm$html$Html$Attributes$style, 'width', '100%'),
-										A2(elm$html$Html$Attributes$style, 'height', '100vh'),
-										A2(elm$html$Html$Attributes$style, 'z-index', '1'),
-										A2(elm$html$Html$Attributes$style, 'position', 'aboslute'),
-										A2(elm$html$Html$Attributes$style, 'cursor', 'none')
-									]),
-								system)))
-					]),
+				_List_Nil,
 				function () {
 					if (!puzzles.b) {
 						return A2(

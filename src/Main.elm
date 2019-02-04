@@ -149,15 +149,16 @@ view { puzzles, system } =
     { title = "Happy Birthday!"
     , body =
           [ Element.layout
-              [ Element.inFront <| Element.html <| System.view viewConfetti
-                    [ style "width" "100%"
-                    , style "height" "100vh"
-                    , style "z-index" "1"
-                    , style "position" "aboslute"
-                    , style "cursor" "none"
-                    ]
-                    system
-              ]
+              -- [ Element.inFront <| Element.html <| System.view viewConfetti
+              --       [ style "width" "100%"
+              --       , style "height" "100vh"
+              --       , style "z-index" "1"
+              --       , style "position" "aboslute"
+              --       , style "cursor" "none"
+              --       ]
+              --       system
+              -- ]
+              []
               <| case puzzles of
                   [] ->
                       Element.el
