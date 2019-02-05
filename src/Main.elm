@@ -13,7 +13,7 @@ import Element.Input as Input
 import Element.Lazy as Lazy
 import Grid
 import Html exposing (Html)
-import Html.Attributes exposing (style)
+import Html.Attributes as Attr exposing (style)
 import Pico exposing (Tile(..), Position, Board)
 import Particle exposing (Particle)
 import Particle.System as System exposing (System)
@@ -24,6 +24,12 @@ import Random.Float exposing (normal)
 import Svg exposing (Svg)
 import Svg.Attributes as SAttrs
 import Task
+
+-- <style>
+--     .clue-tile div {
+--         white-space: normal !important;
+--     }
+-- </style>
 
 
 main : Program Flags Model Msg
@@ -251,12 +257,11 @@ viewClueTile clues (x, y) =
     Element.el
         [ Element.width <| Element.px tileSize
         , Element.height <| Element.px tileSize
+        , Element.htmlAttribute <| Attr.class "clue-tile"
+        , Border.solid
+        , Border.width 1
         ]
-        <| Element.el
-            [ Element.centerX
-            , Element.centerY
-            ]
-            <| Element.text <| "(" ++ (clues |> List.map String.fromInt |> String.join ", ") ++ ")"
+        <| Element.text <| "(" ++ (clues |> List.map String.fromInt |> String.join ", ") ++ ")"
 
 
 ---- PUZZLES ----
@@ -288,19 +293,19 @@ heartColor =
 bunnyAnswer : Array Tile
 bunnyAnswer =
     Array.fromList
-          [ Spacer, Clue [3], Clue [5], Clue [7], Clue [8], Clue [9], Clue [9], Clue [9], Clue [9], Clue [9], Clue [8], Clue [7], Clue [5], Clue [3]
-          , Clue [1, 1], Empty, Empty, Empty, Solid, Empty, Solid, Empty, Empty, Empty, Empty, Empty, Empty, Empty
-          , Clue [1, 1, 1], Empty, Empty, Solid, Empty, Solid, Empty, Solid, Empty, Empty, Empty, Empty, Empty, Empty
-          , Clue [1, 1, 1], Empty, Empty, Solid, Empty, Solid, Empty, Solid, Empty, Empty, Empty, Empty, Empty, Empty
-          , Clue [1, 1, 1], Empty, Empty, Solid, Empty, Solid, Empty, Solid, Empty, Empty, Empty, Empty, Empty, Empty
-          , Clue [1, 1], Empty, Solid, Empty, Empty, Empty, Empty, Solid, Empty, Empty, Empty, Empty, Empty, Empty
-          , Clue [1, 3, 1], Solid, Empty, Empty, Empty, Empty, Empty, Empty, Solid, Solid, Solid, Empty, Solid, Empty
-          , Clue [1, 1, 1, 1], Solid, Empty, Empty, Solid, Empty, Empty, Empty, Empty, Empty, Empty, Solid, Empty, Solid
-          , Clue [1, 1, 1], Solid, Empty, Empty, Solid, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Solid, Empty
-          , Clue [1, 1], Solid, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Solid, Empty
-          , Clue [3, 2, 1], Empty, Solid, Solid, Solid, Empty, Empty, Empty, Solid, Solid, Empty, Empty, Solid, Empty
-          , Clue [1, 2, 1], Empty, Empty, Solid, Empty, Empty, Solid, Solid, Empty, Empty, Empty, Solid, Empty, Empty
-          , Clue [3, 4], Empty, Empty, Solid, Solid, Solid, Empty, Solid, Solid, Solid, Solid, Empty, Empty, Empty
+          [ Spacer,            Clue [4], Clue [1, 1], Clue [3, 4], Clue [1, 2, 1, 1], Clue [3, 1], Clue [1, 1], Clue [4, 2], Clue [1, 1, 1], Clue [1, 1, 1], Clue [1, 1], Clue [1, 1], Clue [1, 3], Clue [1]
+          , Clue [1, 1],       Empty,    Empty,       Empty,       Solid,             Empty,       Solid,       Empty,       Empty,          Empty,          Empty,       Empty,       Empty,       Empty
+          , Clue [1, 1, 1],    Empty,    Empty,       Solid,       Empty,             Solid,       Empty,       Solid,       Empty,          Empty,          Empty,       Empty,       Empty,       Empty
+          , Clue [1, 1, 1],    Empty,    Empty,       Solid,       Empty,             Solid,       Empty,       Solid,       Empty,          Empty,          Empty,       Empty,       Empty,       Empty
+          , Clue [1, 1, 1],    Empty,    Empty,       Solid,       Empty,             Solid,       Empty,       Solid,       Empty,          Empty,          Empty,       Empty,       Empty,       Empty
+          , Clue [1, 1],       Empty,    Solid,       Empty,       Empty,             Empty,       Empty,       Solid,       Empty,          Empty,          Empty,       Empty,       Empty,       Empty
+          , Clue [1, 3, 1],    Solid,    Empty,       Empty,       Empty,             Empty,       Empty,       Empty,       Solid,          Solid,          Solid,       Empty,       Solid,       Empty
+          , Clue [1, 1, 1, 1], Solid,    Empty,       Empty,       Solid,             Empty,       Empty,       Empty,       Empty,          Empty,          Empty,       Solid,       Empty,       Solid
+          , Clue [1, 1, 1],    Solid,    Empty,       Empty,       Solid,             Empty,       Empty,       Empty,       Empty,          Empty,          Empty,       Empty,       Solid,       Empty
+          , Clue [1, 1],       Solid,    Empty,       Empty,       Empty,             Empty,       Empty,       Empty,       Empty,          Empty,          Empty,       Empty,       Solid,       Empty
+          , Clue [3, 2, 1],    Empty,    Solid,       Solid,       Solid,             Empty,       Empty,       Empty,       Solid,          Solid,          Empty,       Empty,       Solid,       Empty
+          , Clue [1, 2, 1],    Empty,    Empty,       Solid,       Empty,             Empty,       Solid,       Solid,       Empty,          Empty,          Empty,       Solid,       Empty,       Empty
+          , Clue [3, 4],       Empty,    Empty,       Solid,       Solid,             Solid,       Empty,       Solid,       Solid,          Solid,          Solid,       Empty,       Empty,       Empty
           ]
 
 
